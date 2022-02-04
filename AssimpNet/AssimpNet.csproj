@@ -1,45 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">NetStandard20-Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{3415FF29-C0BE-44FC-AD34-94796118E690}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Assimp</RootNamespace>
-    <AssemblyName>AssimpNet</AssemblyName>
-    <FileAlignment>512</FileAlignment>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <SignAssembly>True</SignAssembly>
+    <AssemblyOriginatorKeyFile>AssimpKey.snk</AssemblyOriginatorKeyFile>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
     <Version>3.3.1</Version>
     <Company>Nicholas Woodfield</Company>
     <Copyright>Copyright © 2012-2013 AssimpNet - Nicholas Woodfield</Copyright>
     <Description>A .NET Wrapper for the Open Asset Import (Assimp) library.</Description>
-    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>AssimpKey.snk</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DocumentationFile>bin\Release\AssimpNet.XML</DocumentationFile>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <TargetFrameworks>net48</TargetFrameworks>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DebugType>full</DebugType>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <TargetFrameworks>net48</TargetFrameworks>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
+
   <ItemGroup>
     <Content Include="..\libs\Assimp\Assimp32.dll">
       <Link>Assimp32.dll</Link>
@@ -53,17 +25,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="AssimpKey.snk" />
-  </ItemGroup>
-  <Target Name="PostBuild" BeforeTargets="PostBuildEvent">
-    <Exec Command="&quot;..\AssimpNet.Interop.Generator\bin\$(Configuration)\AssimpNet.Interop.Generator.exe&quot; &quot;$(TargetDir)$(TargetFileName)&quot; &quot;$(ProjectDir)AssimpKey.snk&quot;" />
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="&quot;$(ProjectDir)..\AssimpNet.Interop.Generator\bin\$(Configuration)\net48\AssimpNet.Interop.Generator.exe&quot; &quot;$(TargetDir)$(TargetFileName)&quot; &quot;$(ProjectDir)AssimpKey.snk&quot;" />
   </Target>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
+
 </Project>

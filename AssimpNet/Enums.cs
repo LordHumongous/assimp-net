@@ -632,7 +632,7 @@ namespace Assimp
         /// An area light is a rectangle with predefined size that uniformly
         /// emits light from one of its sides. The position is center of the
         /// rectangle and direction is its normal vector.
-        /// <summary>
+        /// </summary>
         Area = 0x5
 
     }
