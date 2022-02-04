@@ -512,7 +512,6 @@ namespace Assimp
         /// array as unsigned integers (the default from Assimp, if you need them).
         /// </summary>
         /// <returns>uint index array</returns>
-        [CLSCompliant(false)]
         public uint[] GetUnsignedIndices()
         {
             if(HasFaces)

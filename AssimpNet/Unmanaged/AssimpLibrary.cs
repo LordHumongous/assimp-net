@@ -32,7 +32,6 @@ namespace Assimp.Unmanaged
     /// <summary>
     /// Singleton that governs access to the unmanaged Assimp library functions.
     /// </summary>
-    [CLSCompliant(false)]
     public sealed class AssimpLibrary
     {
         private static AssimpLibrary s_instance;
