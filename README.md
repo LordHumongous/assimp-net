@@ -1,6 +1,6 @@
 # C# .NET Wrapper for the Open Asset Import Library (Assimp)
 
-NOTE: this fork is a pared down version of the original that targets .NET Core 3.1.
+## NOTE: this fork is a pared down version of the original that targets .NET Core 3.1.
 
 Since Google Code no longer allows new downloads, the latest release can be downloaded via NuGet or on this side.
 
